@@ -4,12 +4,15 @@
              xmlns:xamlreuse="clr-namespace:XamlReuse"
              x:Class="XamlReuse.MainPage">
     <ContentPage.Resources>
+        <ControlTemplate x:Key="TitleTemplate">
+            <Frame>
+                <Label Text="{TemplateBinding BindingContext.Title}"
+                       FontAttributes="Bold"/>
+            </Frame>
+        </ControlTemplate>
         <DataTemplate x:Key="BasicItemTemplate">
             <StackLayout>
-                <Frame>
-                    <Label Text="{Binding Title}"
-                           FontAttributes="Bold"/>
-                </Frame>
+                <ContentView ControlTemplate="{StaticResource TitleTemplate}" />
                 <Frame>
                     <Label Text="{Binding Details}" />
                 </Frame>
@@ -17,10 +20,7 @@
         </DataTemplate>
         <DataTemplate x:Key="ItemWithPropertiesTemplate">
             <StackLayout>
-                <Frame>
-                    <Label Text="{Binding Title}"
-                           FontAttributes="Bold"/>
-                </Frame>
+                <ContentView ControlTemplate="{StaticResource TitleTemplate}" />
                 <Frame>
                     <StackLayout BindableLayout.ItemsSource="{Binding Properties}">
                         <BindableLayout.ItemTemplate>
